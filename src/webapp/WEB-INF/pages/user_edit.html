@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:form="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:method="http://www.w3.org/1999/xhtml" xmlns:action="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Изменение информации</title>
+    <h3>Изменение информации о пользователе</h3>
+
+    <form method="post" th:action="@{/}" th:object="${user}">
+        <input type="hidden" th:field="*{id}"/>
+
+        <p>Имя <input required type="text" th:field="*{name}"/></p>
+        <p>Фамилия <input required type="text" th:field="*{last_name}"/></p>
+        <p>Описание <input required type="text" th:field="*{description}"/></p>
+
+        <button type="submit" class="btn btn-success">Сохранить</button>
+    </form>
+
+</head>
+<body>
+
+</body>
+</html>

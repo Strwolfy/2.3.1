@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:c="http://java.sun.com/xml/ns/javaee">
+
+<head>
+    <meta charset="UTF-8"/>
+    <title>Все пользователи</title>
+    <style>
+        table th, table td {
+            padding: 5px;
+            border: 1px solid black;
+        }
+        .row {
+            font-style: normal;
+            align-content: center;
+        }
+        .even-row {
+            color: black;
+        }
+        .odd-row {
+            color: green;
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+<h2> Таблица всех пользователей </h2>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Описание</th>
+        <th>Удалить</th>
+        <th>Изменить</th>
+    </tr>
+
+    <tr th:each="user, state : ${allUsers}"
+        class="row" th:classappend="${state.odd} ? 'odd-row' : 'even-row'">
+
+        <td th:utext="${user.id}">Номер</td>
+        <td th:utext="${user.name}">Имя</td>
+        <td th:utext="${user.last_name}">Фамилия </td>
+        <td th:utext="${user.description}">Описание</td>
+        <td>
+            <form method="post" th:action="@{/{id}(id=${user.getId()})}">
+                <input type="submit" value="удалить"/>
+            </form>
+        </td>
+        <td>
+        <form th:action="@{/editUser/{id}(id=${user.getId()})}">
+            <input type="submit" value="изменить"/>
+        </form>
+        </td>
+    </tr>
+
+</table>
+<br>
+<input type="button" value="Добавить"
+       onclick="window.location.href ='/addNewUser'"/>
+</body>
+</html>
